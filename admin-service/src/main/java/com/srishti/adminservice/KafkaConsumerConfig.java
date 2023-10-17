@@ -39,4 +39,27 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(aliceNotificationConsumerFactory());
         return factory;
     }
+
+    @Bean
+    public ConsumerFactory<String, BobNotification> bobNotificationConsumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "admin-msg-group");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+        config.put(JsonDeserializer.TYPE_MAPPINGS, "msg:com.srishti.adminservice.BobNotification");
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
+                new JsonDeserializer<>(BobNotification.class));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, BobNotification>
+    bobNotificationKafkaListenerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, BobNotification> factory
+                = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(bobNotificationConsumerFactory());
+        return factory;
+    }
 }

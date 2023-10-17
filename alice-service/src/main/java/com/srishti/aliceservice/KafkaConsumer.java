@@ -11,4 +11,9 @@ public class KafkaConsumer {
         System.out.println("Alice Service: " + notification.getMsg() + " " + notification.getName());
     }
 
+    @KafkaListener(topics = "bob-msg", groupId = "alice-msg-group",
+            containerFactory = "bobNotificationKafkaListenerFactory")
+    public void consumeBobNotification(BobNotification notification) {
+        System.out.println("address: " + notification.getAddress().getLongitude());
+    }
 }

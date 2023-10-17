@@ -17,7 +17,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>admin-service</module>
-        <module>notification-service</module>
         <module>alice-service</module>
         <module>bob-service</module>
     </modules>
