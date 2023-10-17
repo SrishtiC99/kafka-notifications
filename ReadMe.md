@@ -1,6 +1,6 @@
 - [x] send AdminNotification to Alice & Bob
 - [ ] send Notification to Alice & Bob
-- [ ] send AliceNotification to Admin & Bob
+- [x] send AliceNotification to Admin & Bob
 - [ ] send BobNotification to Admin & Alice
 
 

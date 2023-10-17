@@ -1,4 +1,4 @@
-package com.srishti.aliceservice;
+package com.srishti.bobservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
